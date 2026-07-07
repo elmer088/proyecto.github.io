@@ -44,7 +44,7 @@
 }
 
 @media (max-width: 480px) {
-  
+    /* Ajustes generales de la pantalla */
     .screen {
         justify-content: flex-start; 
         padding-top: 1.5rem;
@@ -54,14 +54,13 @@
     }
 
     .texto-inicial {
-        margin: auto;
+        margin: auto; 
         padding: 1rem;
         width: 100%;
     }
 
-
     .titulo-épico {
-        font-size: 2.2rem;
+        font-size: 2.2rem; 
         margin-bottom: 1rem;
     }
 
@@ -70,7 +69,6 @@
         margin: 1rem 0;
         padding: 1rem;
     }
-
 
     .botones-inicio {
         width: 100%;
@@ -84,16 +82,59 @@
         padding: 0.8rem 1rem;
     }
 
+    /* ==========================================
+       MAPA DE PORTALES (CORRECCIÓN CELULAR)
+       ========================================== */
+    .subtitulo-portales {
+        font-size: 1.5rem; /* Título más compacto */
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
 
     .portales-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* Forzamos 2 columnas */
+        gap: 0.8rem; /* Menos espacio entre portales */
+        width: 95%;
     }
 
-    .subtitulo-portales {
-        font-size: 1.6rem;
-        margin-top: 1rem;
+    .portal {
+        min-height: 130px; /* Reducimos la altura brutal de 200px */
+        padding: 1rem 0.3rem;
     }
 
+    .portal .runas {
+        font-size: 1.8rem; /* Runa más pequeña */
+    }
+
+    .portal .nombre-reino {
+        font-size: 1rem;
+        margin: 0.5rem 0 0.2rem;
+    }
+
+    .portal .estado-reino {
+        font-size: 0.8rem;
+    }
+
+    .portal.bloqueado::after {
+        font-size: 1.2rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    #barra-progreso-global {
+        width: 90%;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    #btn-reiniciar {
+        font-size: 1rem !important;
+        padding: 0.6rem 1rem !important;
+    }
+
+    /* ==========================================
+       OTROS ELEMENTOS
+       ========================================== */
     .tarjeta-contenido {
         padding: 1rem;
     }
@@ -103,13 +144,6 @@
         padding: 0.6rem 1rem;
     }
 
-    #barra-progreso-global {
-        width: 90%;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    
     .modal-content {
         padding: 1.5rem 1rem;
         width: 95%;
