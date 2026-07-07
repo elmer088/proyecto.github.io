@@ -1,0 +1,89 @@
+/* ==========================================
+   ANIMACIONES CLAVE
+   ========================================== */
+@keyframes niebla-flotante {
+    0% { transform: translateY(0) scale(1); opacity: 0.5; }
+    100% { transform: translateY(-30px) scale(1.1); opacity: 0.8; }
+}
+
+@keyframes brillo-portal {
+    0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+    50% { box-shadow: 0 0 60px rgba(212, 175, 55, 0.8); }
+    100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+}
+
+@keyframes runas-girando {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes parpadeo-glow {
+    0%, 100% { text-shadow: 0 0 10px var(--dorado); }
+    50% { text-shadow: 0 0 30px var(--dorado), 0 0 60px var(--dorado); }
+}
+
+@keyframes aparecer-texto {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoom-transicion {
+    0% { transform: scale(1.2); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Aplicaciones */
+.portal .runas {
+    animation: runas-girando 12s linear infinite;
+}
+
+.btn-glow {
+    animation: parpadeo-glow 3s infinite;
+}
+
+.tarjeta-contenido {
+    animation: aparecer-texto 0.6s ease forwards;
+    opacity: 0;
+}
+
+.tarjeta-contenido:nth-child(2) { animation-delay: 0.1s; }
+.tarjeta-contenido:nth-child(3) { animation-delay: 0.2s; }
+.tarjeta-contenido:nth-child(4) { animation-delay: 0.3s; }
+
+/* Efectos de partículas (se generan con JS) */
+.particula {
+    position: absolute;
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: flotar-particula 8s infinite alternate ease-in-out;
+}
+
+@keyframes flotar-particula {
+    0% { transform: translateY(0) scale(0.5); opacity: 0.2; }
+    100% { transform: translateY(-80px) scale(1.2); opacity: 0.8; }
+}
+
+/* Transición de zoom */
+.zoom-in {
+    animation: zoom-transicion 1s ease forwards;
+}
+
+/* Efecto de humo en portales (pseudo-elemento) */
+.portal::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(ellipse, rgba(136, 192, 208, 0.1) 0%, transparent 70%);
+    border-radius: 30px;
+    opacity: 0;
+    transition: opacity 0.6s;
+    pointer-events: none;
+}
+
+.portal:hover::before {
+    opacity: 1;
+}

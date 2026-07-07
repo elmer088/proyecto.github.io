@@ -1,0 +1,95 @@
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+    .portales-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .dialogo {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .btn-glow {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .reino-titulo {
+        font-size: 2.5rem;
+    }
+
+    .navegacion-reino {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-reino {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .personaje-reino {
+        flex-direction: column;
+        text-align: center;
+        border-radius: 20px;
+    }
+
+    .audio-control {
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .portales-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .titulo-épico {
+        font-size: 2.5rem;
+    }
+
+    .subtitulo-portales {
+        font-size: 1.8rem;
+    }
+
+    .tarjeta-contenido {
+        padding: 1rem;
+    }
+
+    .opcion {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+    }
+
+    #barra-progreso-global {
+        width: 90%;
+    }
+
+    /* Ajustes específicos para móviles */
+    .botones-inicio {
+        width: 100%;
+    }
+    
+    .btn-glow {
+        width: 100%;
+        font-size: 1rem !important;
+        box-sizing: border-box;
+    }
+
+    .modal-content {
+        padding: 1.5rem 1rem;
+        width: 95%;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .modal-runas {
+        font-size: 1.5rem;
+    }
+}

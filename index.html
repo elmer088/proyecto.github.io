@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚔️ La Guerra de los Verbos</title>
+    <!-- Google Fonts (estilo vikingo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animaciones.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <!-- ========================================= -->
+    <!-- PANTALLA DE CARGA (opcional)              -->
+    <!-- ========================================= -->
+    <div id="loader" aria-hidden="true">
+        <div class="loader-runas">ᚠ ᚢ ᚦ ᚨ ᚱ</div>
+    </div> 
+
+    <!-- ========================================= -->
+    <!-- PANTALLA INICIAL                          -->
+    <!-- ========================================= -->
+<section id="pantalla-inicial" class="screen active">
+    
+    <!-- Estos son tus fondos y partículas -->
+    <div id="yggdrasil-container"><canvas id="yggdrasil-canvas"></canvas></div>
+    <div id="niebla"></div>
+    <div id="particulas"></div>
+
+    <div class="texto-inicial">
+        <h1 class="titulo-épico">LA GUERRA<br>DE LOS VERBOS</h1>
+        <div class="dialogo">
+            <p><span class="atreus">Atreus:</span> "Padre... Cinco guardianes custodian el conocimiento del verbo. Solo quien domine cada reino podrá reclamar la victoria."</p>
+            <p><span class="kratos">Kratos:</span> "Entonces comenzaremos."</p>
+        </div>
+        
+        <!-- Contenedor de botones -->
+        <div class="botones-inicio" style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <button id="btn-comenzar" class="btn-glow" aria-label="Comenzar aventura">
+                <i class="fas fa-axe"></i> COMENZAR AVENTURA <i class="fas fa-axe"></i>
+            </button>
+            
+            <button id="btn-qr" class="btn-glow" aria-label="Compartir QR" style="font-size: 1.2rem; padding: 0.8rem 2rem;">
+                <i class="fas fa-qrcode"></i> COMPARTIR QR
+            </button>
+        </div>
+    </div>
+</section>
+
+    <!-- ========================================= -->
+    <!-- MAPA DE PORTALES                          -->
+    <!-- ========================================= -->
+    <section id="mapa-portales" class="screen hidden" role="main" aria-label="Mapa de los reinos">
+        <h2 class="subtitulo-portales">ᚲᚨᚱᛏᚨ ᛞᛖ ᛚᛟᛋ ᚱᛖᛁᚾᛟᛋ</h2>
+        <div class="portales-grid">
+            <!-- Cada portal se genera dinámicamente con JS -->
+        </div>
+        <div id="barra-progreso-global">
+            <div id="progreso-lleno" style="width:0%"></div>
+            <span id="porcentaje-progreso">0%</span>
+        </div>
+        <button id="btn-reiniciar" class="btn-glow" style="margin-top: 1.5rem; font-size: 1.2rem; padding: 0.6rem 2rem;">
+         <i class="fas fa-undo-alt"></i> REINICIAR AVENTURA
+        </button>
+    </section>
+
+    <!-- ========================================= -->
+    <!-- CONTENEDOR DE REINO (se llena con JS)    -->
+    <!-- ========================================= -->
+    <section id="reino-activo" class="screen hidden" role="main" aria-label="Reino actual">
+        <!-- Aquí se inyecta el contenido dinámico -->
+    </section>
+
+    <!-- ========================================= -->
+    <!-- MODAL DE TRANSICIÓN (cinematográfico)    -->
+    <!-- ========================================= -->
+    <div id="transicion" class="transicion-efecto hidden" aria-hidden="true">
+        <div class="transicion-bloque"></div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- SCRIPTS                                   -->
+    <!-- ========================================= -->
+    <script src="contenido.js"></script>
+    <script src="storage.js"></script>
+    <script src="quiz.js"></script>
+    <script src="animaciones.js"></script>
+    <script src="navegacion.js"></script>
+    <script src="main.js"></script>
+
+    <!-- Modal de victoria -->
+<div id="modal-victoria" class="modal-overlay hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <i class="fas fa-crown"></i>
+            <h2>¡Victoria!</h2>
+        </div>
+        <div class="modal-body">
+            <p>¡Felicidades, guerrero! Has conquistado los cinco reinos y dominado el verbo.</p>
+            <p>Eres el verdadero señor de la lengua. <br>¡Que tu legado perdure!</p>
+            <div class="modal-runas">ᚠ ᚢ ᚦ ᚨ ᚱ</div>
+        </div>
+        <div class="modal-footer">
+            <button id="btn-modal-victoria" class="btn-glow">Volver al mapa</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmación de reinicio -->
+<div id="modal-reinicio" class="modal-overlay hidden">
+    <div class="modal-content modal-reinicio">
+        <div class="modal-header">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h2>⚠️ Reiniciar Aventura</h2>
+        </div>
+        <div class="modal-body">
+            <p>¿Seguro que deseas reiniciar toda la aventura?</p>
+            <p style="color: var(--rojo-oscuro); font-weight: bold;">Perderás todo tu progreso y volverás al principio.</p>
+            <div class="modal-runas">ᚦ ᛟ ᚱ ᛗ</div>
+        </div>
+        <div class="modal-footer" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button id="btn-reinicio-cancelar" class="modal-btn modal-btn-secundario">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+            <button id="btn-reinicio-confirmar" class="modal-btn modal-btn-peligro">
+                <i class="fas fa-undo-alt"></i> Sí, reiniciar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="modal-qr" class="modal-overlay hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <i class="fas fa-share-alt"></i>
+            <h2>Compartir Aventura</h2>
+        </div>
+        <div class="modal-body">
+            <p>Escanea este código para unirte a la batalla:</p>
+            
+            <img src="img\WhatsApp Image 2026-07-06 at 9.31.02 PM.jpeg" alt="Código QR de la Guerra de los Verbos" class="qr-imagen">
+            
+            <p>O ingresa usando este enlace:</p>
+            
+            <a href="https://proyecto-redaccion-verbos-0082026.netlify.app/" target="_blank" class="qr-enlace">https://proyecto-redaccion-verbos-0082026.netlify.app/</a>
+        </div>
+        <div class="modal-footer">
+            <button id="btn-cerrar-qr" class="btn-glow" style="font-size: 1.1rem; padding: 0.6rem 2rem;">Volver</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

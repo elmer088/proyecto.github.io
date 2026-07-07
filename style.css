@@ -1,0 +1,709 @@
+/* ==========================================
+   VARIABLES CSS (Paleta God of War)
+   ========================================== */
+:root {
+    --negro: #0a0a0a;
+    --gris-oscuro: #1a1a1a;
+    --gris-medio: #2e2e2e;
+    --azul-hielo: #88c0d0;
+    --blanco: #f0f0f0;
+    --dorado: #d4af37;
+    --rojo-oscuro: #8b0000;
+    --sombra-dorada: 0 0 20px rgba(212, 175, 55, 0.4);
+    --fuente-titulo: 'Cinzel', serif;
+    --fuente-texto: 'MedievalSharp', cursive;
+    --transicion-suave: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ==========================================
+   RESET Y BASE
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: var(--fuente-texto);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease, transform 1s ease;
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+.screen.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+/* ==========================================
+   PANTALLA INICIAL
+   ========================================== */
+#pantalla-inicial {
+    background: radial-gradient(ellipse at center, #0d0d0d 0%, #000000 100%);
+}
+
+#yggdrasil-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#yggdrasil-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#niebla {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 50% 60%, rgba(136, 192, 208, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    animation: niebla-flotante 20s infinite alternate;
+}
+
+#particulas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.texto-inicial {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    /* El margin auto asegura el centrado perfecto sin cortar bordes */
+    margin: auto; 
+}
+
+.titulo-épico {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(3rem, 12vw, 6rem);
+    font-weight: 900;
+    color: var(--dorado);
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+    line-height: 1.1;
+    letter-spacing: 4px;
+    margin-bottom: 1.5rem;
+}
+.dialogo {
+    background: rgba(0, 0, 0, 0.7);
+    border-left: 4px solid var(--dorado);
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    backdrop-filter: blur(4px);
+}
+
+.dialogo p {
+    margin: 0.5rem 0;
+}
+
+.atreus {
+    color: var(--azul-hielo);
+    font-weight: bold;
+}
+
+.kratos {
+    color: var(--rojo-oscuro);
+    font-weight: bold;
+}
+
+.btn-glow {
+    background: transparent;
+    border: 2px solid var(--dorado);
+    color: var(--dorado);
+    font-family: var(--fuente-titulo);
+    font-size: 1.6rem;
+    padding: 1rem 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.btn-glow:hover {
+    background: var(--dorado);
+    color: var(--negro);
+    box-shadow: var(--sombra-dorada);
+    transform: scale(1.05);
+}
+
+.btn-glow i {
+    margin: 0 0.8rem;
+}
+
+/* ==========================================
+   MAPA DE PORTALES
+   ========================================== */
+#mapa-portales {
+    background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.subtitulo-portales {
+    font-family: var(--fuente-titulo);
+    font-size: 2.5rem;
+    color: var(--azul-hielo);
+    text-shadow: 0 0 20px rgba(136, 192, 208, 0.3);
+    margin-bottom: 2rem;
+    letter-spacing: 8px;
+}
+
+.portales-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.portal {
+    background: var(--gris-oscuro);
+    border-radius: 20px;
+    padding: 1.5rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 2px solid transparent;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+.portal .runas {
+    font-size: 2.5rem;
+    color: var(--dorado);
+    opacity: 0.6;
+    letter-spacing: 6px;
+}
+
+.portal .nombre-reino {
+    font-family: var(--fuente-titulo);
+    font-size: 1.2rem;
+    margin: 0.8rem 0 0.3rem;
+    color: var(--blanco);
+}
+
+.portal .estado-reino {
+    font-size: 0.9rem;
+    color: var(--gris-medio);
+}
+
+.portal.completado {
+    border-color: var(--dorado);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.portal.bloqueado {
+    opacity: 0.5;
+    filter: grayscale(0.8);
+    cursor: not-allowed;
+}
+
+.portal.bloqueado::after {
+    content: "🔒";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem;
+}
+
+.portal:hover:not(.bloqueado) {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+    border-color: var(--dorado);
+}
+
+/* ==========================================
+   BARRA DE PROGRESO GLOBAL
+   ========================================== */
+#barra-progreso-global {
+    width: 80%;
+    max-width: 600px;
+    height: 20px;
+    background: var(--gris-oscuro);
+    border-radius: 20px;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--gris-medio);
+}
+
+#progreso-lleno {
+    height: 100%;
+    background: linear-gradient(90deg, var(--dorado), var(--azul-hielo));
+    border-radius: 20px;
+    transition: width 0.8s ease;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+#porcentaje-progreso {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--blanco);
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+/* ==========================================
+   REINO ACTIVO (contenido dinámico)
+   ========================================== */
+#reino-activo {
+    background: var(--negro);
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.reino-contenedor {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.reino-titulo {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--dorado);
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.reino-subtitulo {
+    text-align: center;
+    color: var(--azul-hielo);
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    border-bottom: 1px solid var(--gris-medio);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Tarjetas de contenido */
+.tarjeta-contenido {
+    background: rgba(26, 26, 26, 0.8);
+    border-left: 4px solid var(--dorado);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-contenido:hover {
+    transform: translateX(6px);
+}
+
+.tarjeta-contenido h3 {
+    font-family: var(--fuente-titulo);
+    color: var(--azul-hielo);
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-contenido p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+/* Acordeón */
+.acordeon {
+    background: var(--gris-oscuro);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.acordeon-header {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--gris-medio);
+    transition: background 0.3s;
+}
+
+.acordeon-header:hover {
+    background: var(--gris-oscuro);
+}
+
+.acordeon-header h4 {
+    font-family: var(--fuente-titulo);
+    color: var(--dorado);
+    margin: 0;
+}
+
+.acordeon-header i {
+    transition: transform 0.4s;
+}
+
+.acordeon-header.active i {
+    transform: rotate(180deg);
+}
+
+.acordeon-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    padding: 0 1.5rem;
+    background: var(--gris-oscuro);
+}
+
+.acordeon-body.open {
+    max-height: 600px;
+    padding: 1.5rem;
+}
+
+/* Personaje */
+.personaje-reino {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(0,0,0,0.6);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--gris-medio);
+}
+
+.personaje-reino i {
+    font-size: 3rem;
+    color: var(--dorado);
+}
+
+.personaje-reino .mensaje {
+    font-style: italic;
+    color: #ccc;
+}
+
+/* ==========================================
+   DESAFÍO (QUIZ)
+   ========================================== */
+.desafio {
+    background: var(--gris-oscuro);
+    border: 2px solid var(--dorado);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+}
+
+.desafio h3 {
+    font-family: var(--fuente-titulo);
+    color: var(--rojo-oscuro);
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+}
+
+.opcion {
+    background: var(--gris-medio);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    color: var(--blanco);
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.opcion:hover {
+    border-color: var(--azul-hielo);
+    background: var(--gris-oscuro);
+}
+
+.opcion.seleccionada {
+    border-color: var(--dorado);
+    background: rgba(212, 175, 55, 0.2);
+}
+
+.opcion.correcta {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.3);
+}
+
+.opcion.incorrecta {
+    border-color: var(--rojo-oscuro);
+    background: rgba(139, 0, 0, 0.3);
+}
+
+/* Botones de navegación dentro del reino */
+.navegacion-reino {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.btn-reino {
+    background: transparent;
+    border: 1px solid var(--gris-medio);
+    color: var(--blanco);
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: var(--fuente-titulo);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.btn-reino:hover:not(:disabled) {
+    border-color: var(--dorado);
+    color: var(--dorado);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.btn-reino:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   TRANSICIÓN CINEMATOGRÁFICA
+   ========================================== */
+.transicion-efecto {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transicion-bloque {
+    width: 100%;
+    height: 100%;
+    background: var(--negro);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.transicion-efecto.activa .transicion-bloque {
+    opacity: 1;
+}
+
+/* ==========================================
+   CONTROL DE AUDIO
+   ========================================== */
+.audio-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+#toggle-audio {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--gris-medio);
+    color: var(--blanco);
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s;
+}
+
+#toggle-audio:hover {
+    border-color: var(--dorado);
+    color: var(--dorado);
+}
+
+/* ==========================================
+   SCROLLBAR PERSONALIZADA
+   ========================================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--gris-oscuro);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--dorado);
+    border-radius: 10px;
+}
+
+/* ==========================================
+   MODAL DE VICTORIA
+   ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.5s ease;
+}
+
+.modal-overlay.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border: 2px solid var(--dorado);
+    border-radius: 30px;
+    padding: 2.5rem 3rem;
+    max-width: 550px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
+    animation: modal-entrada 0.6s ease;
+}
+
+@keyframes modal-entrada {
+    0% { transform: scale(0.8) translateY(-30px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-header i {
+    font-size: 3rem;
+    color: var(--dorado);
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+.modal-header h2 {
+    font-family: var(--fuente-titulo);
+    font-size: 2.5rem;
+    color: var(--dorado);
+    margin: 0;
+}
+
+.modal-body p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ddd;
+    margin: 0.8rem 0;
+}
+
+.modal-runas {
+    font-size: 2.2rem;
+    color: var(--azul-hielo);
+    letter-spacing: 8px;
+    margin: 1rem 0 0.5rem;
+    opacity: 0.6;
+}
+
+.modal-footer {
+    margin-top: 1.5rem;
+}
+
+/* ==========================================
+   ESTILOS PARA EL MODAL QR
+   ========================================== */
+.qr-imagen {
+    width: 100%;
+    max-width: 220px;
+    border: 4px solid var(--dorado);
+    border-radius: 12px;
+    margin: 1.5rem auto;
+    display: block;
+    box-shadow: var(--sombra-dorada);
+    background-color: var(--blanco); /* Fondo blanco por si el QR es transparente */
+    padding: 0.5rem;
+}
+
+.qr-enlace {
+    color: var(--azul-hielo);
+    word-break: break-all;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--azul-hielo);
+    transition: color 0.3s, border-color 0.3s;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.qr-enlace:hover {
+    color: var(--dorado);
+    border-bottom-color: var(--dorado);
+}
